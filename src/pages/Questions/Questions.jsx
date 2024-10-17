@@ -63,7 +63,6 @@ const Questions = () => {
 
   const message = (option) => {
     setSelected(option);
-
     if (selected === option) {
       toast.error("Soru seçimi zaten yapıldı.");
       return;
@@ -132,8 +131,10 @@ const Questions = () => {
               {questions[currentQuestion].options.map((option, index) => (
                 <button
                   key={index}
-                  className={`bg-zinc-50 p-3 rounded-md border flex  disabled:bg-gray-300 disabled:text-gray-400 ${
-                    selected === option ? "bg-blue-500 text-white" : ""
+                  className={` p-3 rounded-md border flex  disabled:bg-gray-300 disabled:text-gray-400 ${
+                    selected === option
+                      ? "bg-blue-500 text-white"
+                      : "bg-zinc-50"
                   }`}
                   disabled={time >= 20}
                   onClick={() => message(option)}
