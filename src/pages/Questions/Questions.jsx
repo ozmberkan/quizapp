@@ -7,6 +7,7 @@ import {
 import { FiArrowRightCircle } from "react-icons/fi";
 import { ring2 } from "ldrs";
 import { useNavigate } from "react-router-dom";
+import { setAnswers } from "~/redux/slices/answersSlice";
 import toast from "react-hot-toast";
 
 const Questions = () => {
@@ -16,7 +17,7 @@ const Questions = () => {
   const { questions, status, currentQuestion } = useSelector(
     (store) => store.questions
   );
-
+  const [selected, setSelected] = useState(null);
   const [time, setTime] = useState(30);
 
   useEffect(() => {
@@ -60,6 +61,23 @@ const Questions = () => {
     }, 1000);
   };
 
+  const message = (option) => {
+    setSelected(option);
+
+    if (selected === option) {
+      toast.error("Soru seçimi zaten yapıldı.");
+      return;
+    } else {
+      dispatch(
+        setAnswers({
+          question: currentQuestion + 1,
+          answer: selected === "" ? "Boş" : option,
+          correctAnswer: questions[currentQuestion].correctAnswer,
+        })
+      );
+    }
+  };
+
   if (status === "loading") {
     return (
       <div className="flex justify-center items-center flex-grow">
@@ -97,7 +115,7 @@ const Questions = () => {
           ) : (
             <button
               onClick={finishQuiz}
-              className="px-4 py-2 rounded-md border bg-black text-white"
+              className="px-4 py-2 rounded-md border bg-black text-white disabled:bg-gray-300"
             >
               Sınavı Bitir
             </button>
@@ -114,8 +132,11 @@ const Questions = () => {
               {questions[currentQuestion].options.map((option, index) => (
                 <button
                   key={index}
-                  className="bg-white p-3 rounded-md border flex hover:bg-zinc-100 disabled:bg-gray-300"
-                  disabled={time >= 20}
+                  className={`bg-zinc-50 p-3 rounded-md border flex  disabled:bg-gray-300 ${
+                    selected === option ? "bg-blue-500 text-white" : ""
+                  }`}
+                  // disabled={time >= 20}
+                  onClick={() => message(option)}
                 >
                   {option}
                 </button>
