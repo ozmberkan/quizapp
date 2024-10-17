@@ -1,7 +1,7 @@
-import { Toaster } from "react-hot-toast";
-import { Outlet } from "react-router-dom";
-import Navbar from "~/components/Navbar/Navbar";
 import Container from "~/container/Container";
+import Navbar from "~/components/Navbar/Navbar";
+import { Outlet } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 const Layout = () => {
   return (

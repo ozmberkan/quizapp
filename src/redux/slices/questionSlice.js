@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const getRandomQuestions = (questions, count = 10) => {
-  const shuffled = [...questions].sort(() => Math.random() - 0.5); 
+  const shuffled = [...questions].sort(() => Math.random() - 0.5);
   return shuffled.slice(0, count);
 };
 
@@ -31,7 +31,6 @@ export const fetchQuestions = createAsyncThunk(
         };
       });
 
-      // Rastgele 10 soru seç
       const randomQuestions = getRandomQuestions(questions);
       return randomQuestions;
     } catch (error) {

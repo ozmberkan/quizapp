@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { tableTitles } from "~/data/data";
 
 const Results = () => {
   const { answers } = useSelector((store) => store.answers);
@@ -29,22 +30,14 @@ const Results = () => {
           </div>
         )}
       </div>
-
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th scope="col" className="px-2 py-3">
-              Soru Numarası
-            </th>
-            <th scope="col" className="px-2 py-3">
-              Verilen Cevap
-            </th>
-            <th scope="col" className="px-2 py-3">
-              Doğru Cevap
-            </th>
-            <th scope="col" className="px-2 py-3">
-              Sonuç
-            </th>
+            {tableTitles.map((title) => (
+              <th key={title.id} scope="col" className="px-2 py-3">
+                {title.label}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
