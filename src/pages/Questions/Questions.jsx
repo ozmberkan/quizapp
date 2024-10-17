@@ -135,7 +135,7 @@ const Questions = () => {
                   className={`bg-zinc-50 p-3 rounded-md border flex  disabled:bg-gray-300 ${
                     selected === option ? "bg-blue-500 text-white" : ""
                   }`}
-                  // disabled={time >= 20}
+                  disabled={time >= 20}
                   onClick={() => message(option)}
                 >
                   {option}
