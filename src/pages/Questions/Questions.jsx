@@ -132,7 +132,7 @@ const Questions = () => {
               {questions[currentQuestion].options.map((option, index) => (
                 <button
                   key={index}
-                  className={`bg-zinc-50 p-3 rounded-md border flex  disabled:bg-gray-300 ${
+                  className={`bg-zinc-50 p-3 rounded-md border flex  disabled:bg-gray-300 disabled:text-gray-400 ${
                     selected === option ? "bg-blue-500 text-white" : ""
                   }`}
                   disabled={time >= 20}
